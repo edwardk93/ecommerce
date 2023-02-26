@@ -3,7 +3,7 @@ const Controller = require('../controllers/products');
 const CategoriesController = require('../controllers/categories');
 
 Router.get('/create', async (req, res, next) => {
-    let categories = await CategoriesController.getAll();
+    let categories = await CategoriesController.getAll()
     res.render('product-form', {categories});
 });
 
@@ -17,5 +17,10 @@ Router.post('/create', async (req, res, next) => {
     }
     
 });
+
+Router.get('/list', async (req, res, next) => {
+    let data = await Controller.getAll(req.body);
+        res.send(data);
+})
 
 module.exports = Router;
